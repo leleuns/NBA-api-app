@@ -4,8 +4,6 @@ import { Inter } from '@next/font/google';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
-
 interface PokemonImages {
   front_default: string;
 }
