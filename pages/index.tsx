@@ -4,10 +4,6 @@ import { Inter } from '@next/font/google';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-interface PokemonImages {
-  front_default: string;
-}
-
 interface PokemonTypes {
   type: {
     name: string;
@@ -21,8 +17,11 @@ interface PokemonForm {
     url: string;
     location_area_encounters: string;
   };
+
+  sprites: {
+    front_default: string;
+  };
   types: Array<PokemonTypes>;
-  sprites: PokemonImages;
 }
 
 interface Response {
@@ -45,8 +44,8 @@ export default function Home() {
     async function getUser() {
       try {
         const pokemon = await axios.get<PokemonForm>(
-          'https://pokeapi.co/api/v2/pokemon-form/461',
-        );
+          'https://pokeapi.co/api/v2/pokemon-form/72',
+        ); //await pasues and waits for promise
         if (!pokemon.data) {
           return;
         }
@@ -58,6 +57,8 @@ export default function Home() {
 
     getUser();
   }, []); //empty array, for first render
+
+  
   return (
     <>
       <Head>
@@ -66,6 +67,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <body>
+        <div className="search-wrapper">
+          <label>Search Pokemon</label>
+          <div>
+          
+            <input type= "search" id="search" />
+          </div>
+        </div>
+      </body>
       <main>
         {data && (
           <div>
