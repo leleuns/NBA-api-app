@@ -3,29 +3,26 @@ import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import Modal from './Modal';
 
-interface PokemonTypes {
-  type: {
-    name: string;
-    url: string;
+export interface PlayerMeta {
+  first_name: string;
+  last_name: string;
+  height_feet: number;
+  height_inches: number;
+  position: string;
+  team: {
+    divison: string;
+    full_name: string;
   };
 }
 
-interface PokemonForm {
-  pokemon: {
-    name: string;
-    url: string;
-    location_area_encounters: string;
-  };
-
-  sprites: {
-    front_default: string;
-  };
-  types: Array<PokemonTypes>;
+interface Players {
+  data: Array<PlayerMeta>;
 }
 
 interface Response {
-  data: PokemonForm;
+  data: Players;
 }
 
 export default function Home() {
@@ -38,35 +35,77 @@ export default function Home() {
    *
    */
 
-  const [data, setData] = useState<PokemonForm>();
+  const [data, setData] = useState<Players>();
+
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
+  const [visible, setVisible] = useState(false);
+  // const [player, setPlayer] = useState('');
+  // const [playerLast, setPlayerLast] = useState('');
+  // const [playerPosition, setPlayerPosition] = useState('');
+  // const [playerTeam, setPlayerTeam] = useState('');
+  // const [heightFeet, setheightFeet] = useState<number>();
+  // const [heightInches, setheightInches] = useState<number>();
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerMeta>();
 
   useEffect(() => {
     async function getUser() {
       try {
-        const pokemon = await axios.get<PokemonForm>(
-          `https://pokeapi.co/api/v2/pokemon-form/${input}`,
+        const player = await axios.get<Players>(
+          `https://www.balldontlie.io/api/v1/players/?search=${input}&per_page=10`,
         ); //await pasues and waits for promise
-        if (!pokemon.data) {
+        if (!player.data) {
           return;
         }
-        setData(pokemon.data);
+
+        //  const resultArray = input.filter(input => input.title.includes(input))
+        setData(player.data);
       } catch (error) {
         console.error(error);
       }
     }
 
     if (!input) {
+      //checks if inputs valid
       return;
     }
 
-    if (!parseInt(input)) {
-      setError('Must be number input');
+    if (parseInt(input)) {
+      //checks if its a number
+      setError('Must be string input');
       return;
     }
+    console.log(input);
     getUser();
   }, [input]); //empty array, for first render
+
+  const getNames = () => {
+    if (!data) {
+      return null;
+    }
+    return (
+      <div>
+        {data.data.map((player) => (
+          <div>
+            {
+              <div className= 'playerButton'>
+                <button
+                  onClick={() => {
+                    setVisible(true);
+                    setSelectedPlayer(player);
+                  }}
+                >
+                  {player.first_name} {player.last_name}
+                </button>
+              </div>
+            }
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  console.log(getNames());
 
   return (
     <>
@@ -76,30 +115,31 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <main>
+        <div className="searchTitle">Lawrence's NBA searcher
+        <div>
+        <img className = "NBA_logo" src = "https://1000logos.net/wp-content/uploads/2017/04/Logo-NBA.png" alt = 'NBA Logo'/>
+        </div>
+      
         <input
+          className='searchBar'
           type="search"
           id="search"
+          placeholder="Enter a Player name"
           onChange={(event) => {
             setInput(event.target.value);
           }}
         />
-        {error && (
-          <div style={{color: 'red'}}>{error}</div>
-        )}
-        {data && (
-          <div>
-            <div>Pokemon: {data.pokemon.name}</div>
-            <div>the type is: {data.types[0].type.name}</div>
-            <div>the url is {data.pokemon.url}</div>
-            <div>
-              <img
-                src={data.sprites.front_default}
-                alt="pokemon front profile"
-              />
-            </div>
-          </div>
-        )}
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+        {data && data.data.length && <>{getNames()}</>}
+
+        <Modal
+          open={visible}
+          selectedPlayer={selectedPlayer}
+          onClose={() => setVisible(false)}
+        />  </div>
+        {/* instead of above, pass in the selected player as props to the component */}
       </main>
     </>
   );

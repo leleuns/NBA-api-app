@@ -1,0 +1,27 @@
+.searchTitle {
+  font-weight: bold;
+  margin: auto;
+
+  padding: 10px;
+  text-align:center;
+
+}
+.NBA_logo {
+    width: 20%;
+    margin: auto;
+    padding: 10px;
+    text-align:center;
+
+
+  }
+  .searchBar {
+
+
+
+
+  }
+  .playerButton{
+        margin: auto;
+    padding: 1px;
+    text-align:center;
+  }
