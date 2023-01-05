@@ -32,7 +32,7 @@ export default function Modal({ open, selectedPlayer, onClose }: ModalProps) {
         <div>position: {selectedPlayer.position}</div>
       )}
       {selectedPlayer?.team.full_name && (
-        <div>Team: {selectedPlayer.team.full_name}</div>
+        <div>Current/Last Team: {selectedPlayer.team.full_name}</div>
       )}
       <div>
         <button onClick={onClose}>close modal</button>

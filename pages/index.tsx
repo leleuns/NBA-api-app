@@ -36,7 +36,6 @@ export default function Home() {
    */
 
   const [data, setData] = useState<Players>();
-
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
   const [visible, setVisible] = useState(false);
@@ -121,6 +120,10 @@ export default function Home() {
         <div>
         <img className = "NBA_logo" src = "https://1000logos.net/wp-content/uploads/2017/04/Logo-NBA.png" alt = 'NBA Logo'/>
         </div>
+
+        {/* <div>
+          Enter in a Player's name to find their team, posiiton, and height if available using the balldontlie API
+        </div> */}
       
         <input
           className='searchBar'
