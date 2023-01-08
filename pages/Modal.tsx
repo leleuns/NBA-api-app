@@ -9,18 +9,15 @@ interface ModalProps {
 
 export default function Modal({ open, selectedPlayer, onClose }: ModalProps) {
   const modalStyles = {
-    
     position: 'fixed',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     padding: '150px',
-    backgroundColor: 'white'
-    
+    backgroundColor: 'white',
   } as any; //TODO fix
 
   const overlayStyle = {
-
     position: 'fixed',
     top: 0,
     left: 0,

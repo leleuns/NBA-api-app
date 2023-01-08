@@ -33,12 +33,10 @@
 }
 .backgroundPage {
   /* background-image:url(https://64.media.tumblr.com/f01ed5d1ca2b98313045b42acc465c3f/tumblr_pxhekpw5PC1sdydefo1_r1_400.gif);  */
-   /* background-repeat: no-repeat;  */
+  /* background-repeat: no-repeat;  */
   background-attachment: fixed;
   height: 800px;
   padding: 0px;
   margin: 0;
   /* background-color: rgba(0,0,0,.7); */
-
 }
-.main{}
