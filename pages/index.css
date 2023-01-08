@@ -1,27 +1,44 @@
+.centering {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  text-align: center;
+}
+
 .searchTitle {
   font-weight: bold;
   margin: auto;
-
+  font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
-  text-align:center;
-
+  text-align: center;
+  font-size: 40px;
 }
 .NBA_logo {
-    width: 20%;
-    margin: auto;
-    padding: 10px;
-    text-align: center;
+  width: 20%;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+.searchBar {
+  width: 230px;
+}
+.playersButtons {
+  margin: auto;
+  padding: 1px;
+  text-align: center;
+}
+.playerButton {
+  margin: auto;
+  width: 230px;
+  text-align: center;
+}
+.backgroundPage {
+  /* background-image:url(https://64.media.tumblr.com/f01ed5d1ca2b98313045b42acc465c3f/tumblr_pxhekpw5PC1sdydefo1_r1_400.gif);  */
+   /* background-repeat: no-repeat;  */
+  background-attachment: fixed;
+  height: 800px;
+  padding: 0px;
+  margin: 0;
+  /* background-color: rgba(0,0,0,.7); */
 
-
-  }
-  .searchBar {
-
-
-
-
-  }
-  .playerButton{
-        margin: auto;
-    padding: 1px;
-    text-align:center;
-  }
+}
+.main{}
