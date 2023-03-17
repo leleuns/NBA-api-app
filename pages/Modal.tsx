@@ -14,7 +14,7 @@ export default function Modal({ open, selectedPlayer, onClose }: ModalProps) {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     padding: '150px',
-    backgroundColor: 'white',
+    backgroundColor: 'grey',
   } as any; //TODO fix
 
   const overlayStyle = {
